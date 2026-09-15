@@ -3,15 +3,12 @@
 
 ## Contributors
 
-Point of Contact?
-Ethan Westfall, GitHub: ecwestfa, ecwestfa@syr.edu; Ahmad Mashhood, GitHub: ahmadmashhood01, ahmashho@syr.edu
+Point of Contact: Ahmad Mashhood, GitHub: ahmadmashhood01; Co-contributor: Ethan Westfall, GitHub: ecwestfa
 
 
 ## Introduction
 
-We want to find out whether a country's wealth and economic health help predict how many Olympic medals its athletes win, by matching year-by-year medal records for about 150 countries with World Bank indicators from 1960 to 2025 covering income, poverty, health, education, and labor. Unlike prior studies that rely on simple models using only population and GDP, we will apply machine learning to 62 economic indicators paired with our year-by-year medal dataset (medal_table_summary.csv), which can capture complex patterns and rank which factors matter most. 
-
-Prior work shows GDP and population already explain much of medal variation[^1], so we expect a broader indicator set and more flexible models to improve on that baseline. The results can help Olympic committees and sports ministries set realistic medal targets, guide IOC funding to countries limited by economic constraints rather than talent, and give developing nations evidence to support sports investment.
+Countries' wealth and economic health are constantly changing, and this is likely a large contributor to their performances at previous and upcoming Olympics. The goal is to match Olympic medal records to economic factors that predict the growth and decline of a country. We will apply machine learning to 62 economic indicators paired with our year-by-year medal dataset to rank which factors matter most without using just population and GDP like past studies. The results can help Olympic committees and sports ministries set realistic medal targets, guide IOC funding to countries limited by economic constraints, and give developing nations evidence to support sports investment for upcoming Olympics.
 
 
 ## Literature Review
@@ -20,7 +17,7 @@ Research consistently links national economic strength to Olympic success. Membe
 
 Recent work has begun applying machine learning. Ensemble models (XGBoost, LightGBM) and deep learning architectures (CNN-LSTM, STGCN-LSTM) integrate GDP, population, team size, and historical performance to predict medal totals. Applied studies using World Bank indicators report R² values of 75 to 79% for recent Games, with total GDP outperforming GDP per capita alone in tree-based models[^4].
 
-Three gaps motivate our project. First, most studies rely on simple linear models that miss nonlinear effects and interactions. Second, few combine a wide set of economic indicators (health, education, poverty, inflation) in one framework. Third, results are rarely presented in a form useful to policymakers who need interpretable, country-level predictions. We address these by merging year-by-year medal data with 62 World Bank indicators and applying interpretable machine learning models that report both accuracy and feature importance.
+Most studies rely on simple linear models that miss nonlinear effects and interactions. Very few combine a wide set of economic indicators (health, education, poverty, inflation) in one framework. And results are rarely presented in a form useful to policymakers who need interpretable, country-level predictions. We address these by merging year-by-year medal data with 62 World Bank indicators and applying machine learning models to report feature importance.
 
 
 ### Stakeholders and Their Needs
@@ -77,16 +74,12 @@ Lastly, we will use our models to predict key interests of our stakeholders. We 
 
 | **Period** | **Activity** | **Milestone** |
 | --- | --- | --- |
-| 9/16 - 9/22 | Row 1, Col 2 | Row 1, Col 3 |
-| 9-23, 9-29 | Row 2, Col 2 | Row 2, Col 3 |
-| 9/16 - 9/22 | Row 1, Col 2 | Row 1, Col 3 |
-| 9-23, 9-29 | Row 2, Col 2 | Row 2, Col 3 |
-| 9/16 - 9/22 | Row 1, Col 2 | Row 1, Col 3 |
-| 9-23, 9-29 | Row 2, Col 2 | Row 2, Col 3 |
-| 9/16 - 9/22 | Row 1, Col 2 | Row 1, Col 3 |
-| 9-23, 9-29 | Row 2, Col 2 | Row 2, Col 3 |
-| 9/16 - 9/22 | Row 1, Col 2 | Row 1, Col 3 |
-| 9-23, 9-29 | Row 2, Col 2 | Row 2, Col 3 |
+| 9/16 - 9/29 | Merge datasets, clean missing data, run EDA, train baseline linear/logistic models | Merged dataset and EDA notebook on GitHub; baseline models scored |
+| 9/30 - 10/13 | Train decision trees, analyze feature importance, start midterm slides | Decision trees compared to baselines; midterm deck drafted |
+| 10/14 - 10/27 | Train ensemble models (RF, XGBoost, LightGBM), deliver midterm (10/20) | Midterm presented; best ensemble model selected |
+| 10/28 - 11/10 | Apply PCA, cluster countries, begin hyperparameter tuning | Feature reduction and clusters documented; tuning pipeline built |
+| 11/11 - 11/24 | Finish tuning, build stakeholder rankings and efficiency metrics | Final models tuned; results and visuals on GitHub |
+| 11/25 - 12/8 | Write final report, prepare and rehearse final presentation | Final presentation delivered (12/8); all deliverables on GitHub |
 
 ## Risks
 
