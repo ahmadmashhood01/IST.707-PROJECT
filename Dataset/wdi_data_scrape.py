@@ -31,7 +31,7 @@ MAX_RETRIES = 5
 # "Your desired country name": "World Bank / ISO3 code"
 # ============================================================
 
-COUNTRIES = {
+'''COUNTRIES = {
     "Afghanistan": "AFG",
     "Albania": "ALB",
     "Algeria": "DZA",
@@ -172,6 +172,14 @@ COUNTRIES = {
     "Viet Nam": "VNM",
     "Zambia": "ZMB",
     "Zimbabwe": "ZWE",
+}'''
+
+#Added countries that are not in the Olympic dataset or were missed due to renaming
+
+COUNTRIES = {
+    #Missed due to renaming
+    "Curacao": "CUW",
+    "Bosnia and Herzegovina": "BIH"
 }
 
 
