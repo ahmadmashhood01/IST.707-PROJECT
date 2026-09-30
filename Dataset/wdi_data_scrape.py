@@ -172,15 +172,84 @@ MAX_RETRIES = 5
     "Viet Nam": "VNM",
     "Zambia": "ZMB",
     "Zimbabwe": "ZWE",
-}'''
-
+}
+'''
 #Added countries that are not in the Olympic dataset or were missed due to renaming
 
 COUNTRIES = {
     #Missed due to renaming
     "Curacao": "CUW",
-    "Bosnia and Herzegovina": "BIH"
+    "Bosnia and Herzegovina": "BIH",
+    #Countries that participated and are not in olympic medals table
+    "American Samoa": "ASM",
+    "Andorra": "AND",
+    "Angola": "AGO",
+    "Antigua and Barbuda": "ATG",
+    "Aruba": "ABW",
+    "Bangladesh": "BGD",
+    "Belize": "BLZ",
+    "Benin": "BEN",
+    "Bermuda": "BMU",
+    "Bhutan": "BTN",
+    "Bolivia": "BOL",
+    "British Virgin Islands": "VGB",
+    "Brunei Darussalam": "BRN",
+    "Cambodia": "KHM",
+    "Cayman Islands": "CYM",
+    "Central African Republic": "CAF",
+    "Chad": "TCD",
+    "Comoros": "COM",
+    "Congo, Rep.": "COG",
+    "Congo, Dem. Rep.": "COD",
+    "El Salvador": "SLV",
+    "Equatorial Guinea": "GNQ",
+    "Micronesia, Fed. Sts.": "FSM",
+    "Gambia, The": "GMB",
+    "Guam": "GUM",
+    "Guinea": "GIN",
+    "Guinea-Bissau": "GNB",
+    "Haiti": "HTI",
+    "Honduras": "HND",
+    "Kiribati": "KIR",
+    "Lao PDR": "LAO",
+    "Lesotho": "LSO",
+    "Liberia": "LBR",
+    "Libya": "LBY",
+    "Madagascar": "MDG",
+    "Malawi": "MWI",
+    "Malaysia": "MYS",
+    "Maldives": "MDV",
+    "Mali": "MLI",
+    "Malta": "MLT",
+    "Marshall Islands": "MHL",
+    "Mauritania": "MRT",
+    "Monaco": "MCO",
+    "Myanmar": "MMR",
+    "Naoero": "NRU",
+    "Nepal": "NPL",
+    "Nicaragua": "NIC",
+    "Yemen, Rep.": "YEM",
+    "Oman": "OMN",
+    "Palau": "PLW",
+    "West Bank and Gaza": "PSE",
+    "Papua New Guinea": "PNG",
+    "Zimbabwe": "ZWE",
+    "Rwanda": "RWA",
+    "St. Kitts and Nevis": "KNA",
+    "St. Vincent and the Grenadines": "VCT",
+    "Sao Tome and Principe": "STP",
+    "Seychelles": "SYC",
+    "Sierra Leone": "SLE",
+    "Solomon Islands": "SLB",
+    "Somalia, Fed. Rep.": "SOM",
+    "South Sudan": "SSD",
+    "Viet Nam": "VNM",
+    "Eswatini": "SWZ",
+    "Timor-Leste": "TLS",
+    "Tuvalu": "TUV",
+    "Vanuatu": "VUT"
 }
+
 
 
 # ============================================================
