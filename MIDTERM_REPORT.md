@@ -294,7 +294,7 @@ These challenges have helped us identify where we need to focus during the secon
 
 ## Conclusion
 
-Our results so far suggest that economic conditions can be useful for predicting Olympic performance.
+Our results so far suggest that economic conditions can help predict Olympic performance.
 
 Our best regression model, Ridge regression with 33 economic indicators, explained approximately **67% of the variation in medal counts** among our 2016 test countries. Our logistic regression model also performed well, correctly predicting whether a country would win a medal for approximately **90% of the test countries**.
 
@@ -306,7 +306,10 @@ We still need to test our models across multiple Olympic years before making str
 
 For the remainder of the project, we want to focus on improving our models, testing how well they predict future Olympic results, and creating comparisons that stakeholders could use to evaluate Olympic performance relative to economic resources.
 
-Ultimately, we hope this project can provide a more useful way to compare Olympic success than simply ranking countries by the number of medals they win.
+Ultimately, we hope this project provides a more useful way to compare Olympic success than simply ranking countries by medal count.
+
+## Use of AI
+We hereby acknowledge that we used ChatGPT to help aid sentence structure and improve language throughout this project. We used AI to generate language when deciding on challenges and stakeholders. We also used AI to help decide the structure of our future work. Last we used chatGPT to help fix our GitHub markdown formatting whereever we felt it was necessary[^chatGPT].
 
 ---
 
@@ -325,3 +328,5 @@ Ultimately, we hope this project can provide a more useful way to compare Olympi
 [^olymp]: Olympedia / CRAN olympicAthletes package: https://cran.r-project.org/web/packages/olympicAthletes/index.html
 
 [^wdi]: World Development Indicators: https://databank.worldbank.org/source/world-development-indicators
+
+[^chatGPT]: ChatGPT: https://chatgpt.com/
