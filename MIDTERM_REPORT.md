@@ -1,6 +1,6 @@
 # Midterm Report: Predicting Olympic Success from National Economic Conditions
 
-**Team:** Ahmad Mashhood (ahmadmashhood01), Ethan Westfall (ecwestfa)  
+**Team:** 
 **Course:** IST 707  
 **Repository:** https://github.com/ahmadmashhood01/IST.707-PROJECT  
 **Notebook:** `notebooks/olympic_economics_split_models.ipynb` (EDA Sections 1 to 11; modeling Sections 19 and 20)  
