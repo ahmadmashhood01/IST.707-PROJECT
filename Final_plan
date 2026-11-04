@@ -1,0 +1,203 @@
+
+
+olympic_economics_group_predictions (1) (1).ipynb
+IPYNB
+
+proposal (3).md
+we have one merged dataset and our final goal is to find what economic factors determine olympic dataset, we have all economics scored so better scores are better, we have all olympic participation and medal data by country by year on top of the economic data, we already have a plan of attack in our proposal but we want one that is more indepth with a summary of our eda and early models before it, take into account the rubric, some of the next steps we want to focus on our perfecting our ridge model, creating a lasso model and running a pca analysis, we also have to do other models outside of regressions including decision tress and random forests, i will upload the proposal later, for now create the plan without it
+
+4:16 PM
+Your strongest next step is to move from an exploratory 2016 comparison to a consistently evaluated analysis of which economic factors predict Olympic success, how much they add beyond national wealth and population, and whether those relationships hold across Olympic editions.
+
+Below is a deeper plan based on the notebook’s saved results. I have not used the proposal. The rubric was not included, so the deliverables below cover common project requirements; exact rubric alignment remains pending.
+
+1. Summary of the EDA completed so far
+The merged dataset contains 13,584 rows and 74 columns, covering economic data from 1960–2025. The notebook identifies 2,715 Olympic observations spanning 1960–2016, with 1,824 observations in the 1990–2016 analysis window.
+
+The cleaning process removed eight economic indicators with less than 10% coverage, leaving 54 economic indicators. Missingness remains substantial: 15 retained indicators are missing for more than half of the 1990–2016 Olympic panel. Additionally, 54 Olympic observations have no retained economic data or WDI country code.
+
+The main findings are:
+
+Medals are highly unevenly distributed. Only 39% of Olympic observations have any medals; the median medal count is zero, while the maximum is 217. Models must handle both many zeros and a small number of dominant countries.
+Participation strongly relates to medals. Athlete count has a Pearson correlation of approximately 0.887 with medals in the 1990+ observations.
+National economic size appears important. In the eligible 2016 modeling sample, total GDP has a correlation of 0.864 with medals, compared with 0.394 for population and 0.186 for GDP per capita.
+Other indicators show useful preliminary associations. Tourism arrivals, private-sector credit, health expenditure, internet access, and life expectancy are positively correlated with medals in the 2016 sample.
+Missingness differs across countries and indicators. This could affect which countries the models represent well.
+GDP/population grouping creates small subgroups. These groups are useful for descriptive comparisons, but fitting separate models within them reduces the available training data.
+These correlations are descriptive associations, not evidence that changing an indicator would cause a country to win more medals.
+
+Scoring clarification: You stated that all economic indicators have already been scored so higher values mean better conditions. The supplied notebook displays raw indicators, including inflation and mortality. The final analysis should explicitly identify the scored columns and their construction so raw values and improvement scores are not mixed.
+
+2. Summary of the early models
+The notebook uses 201 eligible countries from 2016, with 150 training countries and 51 test countries. These are saved notebook results, not results from a new run.
+
+Model	Test R²	MAE	RMSE
+Training-mean baseline	−0.004	6.781	12.207
+Ridge: all selected economic factors	0.673	3.708	6.968
+Ridge: groups with reduced economic factors	0.171	5.873	11.096
+Separate group Ridge models	0.296	4.648	10.225
+Decision tree	0.319	4.181	10.053
+Random forest	0.481	4.367	8.779
+XGBoost	0.300	4.560	10.190
+Logistic regression predicting any medal versus no medals achieved 90.2% accuracy and 0.872 F1, compared with 60.8% accuracy for the majority-class baseline.
+
+What these results suggest: The all-factor Ridge model is the strongest current benchmark. Replacing continuous economic size measures with groups appears to lose useful information. Separate group Ridge models also have worse MAE than their group-mean baseline: 4.648 versus 4.470.
+
+However, the comparison does not yet establish that Ridge is the best model. The trees and forests used reduced predictors plus groups, while the strongest Ridge used all selected economic predictors. Model type and feature set changed together.
+
+3. Define the final research questions
+Use one primary question:
+
+Which economic factors are most consistently associated with country-level Olympic medal performance after accounting for national wealth, population, and Olympic edition?
+
+Then address four supporting questions:
+
+Do health, education, infrastructure, and other economic scores improve prediction beyond wealth and population?
+Does economic development predict whether a country wins any medal?
+Do nonlinear models capture relationships missed by Ridge and Lasso?
+Can PCA summarize overlapping economic indicators without substantially reducing predictive performance?
+Describe the conclusions as predictive relationships and conditional associations. Establishing economic determinants in a causal sense would require a different research design.
+
+4. Finalize the analysis dataset and validation design
+Complete this before tuning models.
+
+Establish the observation unit. Use a country–Olympic-edition record. The notebook includes Summer and Winter Olympic years; identify season explicitly and inspect years when both occurred. Prefer Summer Olympics as the primary analysis to match the existing 2016 benchmark, with Winter analyzed separately if time permits.
+
+Audit the existing merge. Check country/edition duplicates, historical country mappings, medal totals, and participation counts. Preserve the distinction between a participating country with zero medals and a country that did not participate. Confirm how team medals were counted.
+
+Document the economic scores. Create a data dictionary listing each indicator’s meaning, score range, direction, missingness, and scoring formula. Any score transformation estimated from data must be learned within training folds.
+
+Use the panel for the main analysis. Retain 1990–2016 as the starting window, then choose a defensible final window based on coverage. Use earlier editions for training and later editions for validation.
+
+Because 2016 outcomes have already been inspected, describe 2016 as an existing benchmark, not a completely untouched final test. Use rolling evaluations across several later editions to strengthen the evidence.
+
+Keep preprocessing inside validation. Learn coverage-based feature selection, imputation, scaling, PCA, and tuning from each training fold. Avoid backward interpolation from future years. Compare same-year economics with lagged or pre-Games averages, clearly distinguishing retrospective explanation from forecasting.
+
+5. Expand the EDA around the modeling questions
+Add a focused set of figures and summaries:
+
+Analysis	Purpose
+Medal distribution and zero-medal percentage by edition	Establish skewness and changes over time
+Missingness by indicator, country group, and edition	Identify coverage bias and justify the analysis window
+Economic-score correlation heatmap	Identify overlapping predictors for Ridge, Lasso, and PCA
+Pearson and Spearman associations with medals	Compare linear relationships with ranked relationships
+Economic-score distributions by medal/no-medal status	Support the classification task
+Within-country economic and medal changes	Distinguish persistent country differences from changes over time
+Economic relationships within wealth/population strata	Explore whether associations vary across country types
+Keep GDP residual comparisons descriptive. Replace medals divided by log GDP as an efficiency measure with clearer quantities such as medal share, medals per million residents, or held-out residuals. Explain the limitations of each ratio.
+
+6. Create shared baselines and feature sets
+Run every main model on the same observations, folds, targets, and feature sets.
+
+Feature set	Contents	Question
+A: Economic size	Wealth and population measures	How much does national size explain?
+B: Economic conditions	Other scored indicators	How informative are broader conditions alone?
+C: Combined economics	A + B	What do broader conditions add beyond size?
+D: Participation extension	C + athlete count/event entries	What changes when delegation size is known?
+For model C versus A, emphasize the change in validation error, not just individual coefficient rankings.
+
+Keep participation as a separate extension: delegation size may be part of the pathway connecting economics to medals. Including it changes the interpretation of economic coefficients.
+
+Include training-mean and training-median baselines. For forecasting, also include the previous same-season Olympic medal count where available.
+
+7. Perfect the Ridge model
+The current Ridge uses a fixed alpha=100; tuning it is the first modeling priority.
+
+Build a pipeline for training-fold imputation, standardization, and Ridge.
+Search a broad alpha range, such as 
+10
+−
+4
+10 
+−4
+  through 
+10
+4
+10 
+4
+ , using temporal validation.
+Compare the shared feature sets above.
+Compare direct medal-count prediction with a log1p(medals) target.
+Evaluate every version in original medal units after any inverse transformation.
+Inspect residuals for zero-medal countries, major medal winners, wealth groups, and editions.
+Examine coefficient signs and rankings across folds.
+Use RMSE as the primary tuning metric if large medal errors matter most; report MAE alongside it. If MAE is chosen instead, use it consistently across models.
+
+Deliverable: Tuned Ridge results, an alpha-versus-validation-error plot, residual diagnostics, and a coefficient stability summary.
+
+8. Build and interpret Lasso
+Use the same preprocessing and validation structure as Ridge.
+
+Tune alpha, check convergence, and record:
+
+Validation performance.
+Number of retained predictors.
+Which predictors are selected across folds.
+Whether coefficient signs remain consistent.
+Lasso can help identify a compact set of economic predictors, but correlated indicators may substitute for one another. Present frequently selected variables and related economic domains rather than treating one fitted selection as definitive.
+
+Deliverable: Ridge-versus-Lasso comparison, coefficient path plot, and selection-frequency table.
+
+9. Run PCA for structure and prediction
+Use PCA for two distinct purposes.
+
+Economic structure: Fit PCA to imputed, standardized economic scores. Examine the scree plot, cumulative explained variance, and component loadings. Assign component names only after inspecting the loadings.
+
+Predictive comparison: Place PCA inside the training pipeline and compare PCA + Ridge against Ridge on the original scores. Select the number of components using validation performance; use 80%, 90%, and 95% explained variance as descriptive reference points.
+
+Keep country identifiers and Olympic outcomes outside PCA. Consider retaining wealth/population controls separately while applying PCA to the remaining scores.
+
+Even when every economic score has “higher is better” orientation, principal components can contain mixed loadings and their signs are arbitrary.
+
+Deliverable: Scree plot, loading table, and prediction error versus component count.
+
+10. Develop decision trees and random forests
+These provide the required model families beyond linear models.
+
+Decision tree: Tune maximum depth, minimum leaf size, minimum split size, and pruning strength. Display a shallow tree to explain possible thresholds and interactions.
+
+Random forest: Tune maximum depth, minimum leaf size, and features considered per split. Use enough trees for stable results. Compare training and validation errors to assess overfitting.
+
+For both models:
+
+Use the same full feature sets as Ridge and Lasso.
+Retain training-fold imputation; scaling is generally unnecessary.
+Compare performance across editions and country groups.
+Use validation-set permutation importance for interpretation.
+Correlated predictors can share or dilute permutation importance, so also consider importance by economic domain.
+
+Deliverable: Fair model comparison, interpretable tree, forest tuning results, and permutation-importance plot.
+
+11. Extend classification and evaluate robustness
+For the medal/no-medal task, compare logistic regression, a decision-tree classifier, and a random-forest classifier. Report precision, recall, F1, balanced accuracy, PR-AUC, and confusion matrices. Tune thresholds using validation data.
+
+For the main medal models, prioritize these robustness checks:
+
+Different economic coverage thresholds.
+Raw counts versus transformed targets.
+Lagged versus same-year economic indicators.
+With versus without participation measures.
+Sensitivity to dominant medal-winning countries.
+Continuous wealth/population controls versus country groups.
+If time allows, add a Poisson count-model benchmark or a two-stage model for medal probability and positive medal counts.
+
+12. Final synthesis and work order
+The final report should distinguish the best predictive model from the most stable economic findings. For each major factor or domain, report its association direction, stability across folds, agreement across models, and contribution beyond wealth/population.
+
+Complete the work in this order:
+
+Audit scores, seasons, grouping labels, and validation design.
+Finish targeted EDA and establish shared baselines.
+Tune Ridge and build Lasso.
+Run PCA and PCA + Ridge.
+Retune trees and forests on identical feature sets.
+Complete classification, robustness checks, and interpretation.
+Map every deliverable to the supplied rubric and proposal.
+One immediate notebook fix: the GDP-per-capita group labels describe a $30,000 boundary, but the code uses $40,000. Also replace the broad substring filter for "gdp" and "population" with an explicit variable list—it currently removes indicators such as health expenditure (% of GDP), which changes the intended comparison.
+
+The final conclusion should answer: Which economic conditions provide reliable information about Olympic success beyond a country’s wealth and size, and how consistently do those findings hold across models and editions?
+
+4:16 PM
+
+
+
